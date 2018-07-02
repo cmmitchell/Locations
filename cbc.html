@@ -80,7 +80,11 @@
 					})
 				
 					b = L.geoJson(polys, {
-					style: polycol})
+					style: polycol,
+					onEachFeature: function (feature, layer){popupOptions = {color: "#5D6D7E", maxWidth: 250};
+					layer.bindPopup("<b>Address:</b> " + feature.properties.ADDRESS,popupOptions);
+					}
+					})
 
 					
 
