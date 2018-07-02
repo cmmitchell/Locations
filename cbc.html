@@ -75,7 +75,7 @@
 				var a = L.geoJson(points, {
 					style: pointcol,
 					onEachFeature: function (feature, layer){popupOptions = {color: "#5D6D7E", maxWidth: 250};
-					layer.bindPopup("<b>Location:</b> " + feature.properties.name,popupOptions);
+					layer.bindPopup("<b>Location:</b> " + feature.properties.Name,popupOptions);
 					}
 					})
 				
