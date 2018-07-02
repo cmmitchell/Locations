@@ -31,6 +31,7 @@
 		<!-- GeoJSON overlays -->
 		<script type="text/javascript" src="https://cmmitchell.github.io/Locations/Location/Shapefile/caro_point.js"></script>
 		<script type="text/javascript" src="https://cmmitchell.github.io/Locations/Location/Shapefile/caro_poly.js"></script>
+		<script type="text/javascript" src="https://cmmitchell.github.io/Locations/Location/Shapefile/caro_road.js"></script>
 		<script type="text/javascript" src="https://cmmitchell.github.io/Locations/Location/Shapefile/leaflet-bing-layer.js"></script>
 
 		<!-- Broken Stuff -->
@@ -85,6 +86,11 @@
 					layer.bindPopup("<b>Address:</b> " + feature.properties.ADDRESS,popupOptions);
 					}
 					})
+				
+					c = L.geoJson(roads, {
+					style: roadcol
+					
+					})
 
 					
 
@@ -97,7 +103,8 @@
 				
 					//=================background=================
 				var aShp = L.layerGroup([a]),
-					bShp = L.layerGroup([b]);
+					bShp = L.layerGroup([b]),
+				    	cShp = L.layerGroup([c]);
 				
 				//background images
 				var OpenStreetMap_Mapnik = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
