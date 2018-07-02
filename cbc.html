@@ -73,8 +73,16 @@
 			
 				var a = L.geoJson(points, {
 					style: pointcol})
+				
+				
 					b = L.geoJson(polys, {
-					style: polycol})
+						pointToLayer: function (feature, latlng) {
+						return L.circleMarker(latlng, city);},
+					style: polycol,
+					onEachFeature: function (feature, layer){popupOptions = {color: "#5D6D7E", maxWidth: 250};
+					layer.bindPopup("<b>Location:</b> " + feature.properties.Name,popupOptions);
+					}
+					})
 
 					
 
