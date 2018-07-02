@@ -11,11 +11,10 @@ var polys =
 
 function polycol(feature) {
     return {
-        fillColor: "#2773dd",
+        fillColor: "#58c712",
         weight: 2,
         opacity: 1,
-        color: "#2773dd", weight: 1,
-        dashArray: '2',
-        fillOpacity: 0.8
+        color: "#086525", weight: 1,
+        fillOpacity: 0.6
     };
 }
