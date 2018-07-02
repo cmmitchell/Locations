@@ -71,15 +71,11 @@
 			
 			
 			
-				var a = L.geoJson(bak, {
+				var a = L.geoJson(points, {
 					style: back})
-					a1 = L.geoJson(bak, {
+					b = L.geoJson(polys, {
 					style: backblack})
-					
-					a2 = L.geoJson(bak, {
-					style: back})
-					a3 = L.geoJson(bak, {
-					style: back})
+
 					
 
 					
@@ -90,16 +86,9 @@
 				//===================================================
 				
 					//=================background=================
-				var aShp = L.layerGroup([a2]),
-					a1Shp = L.layerGroup([a1]),
-					//=================country=================
-				    	b3128Shp = L.layerGroup([b3128,a]),
-					b5125Shp = L.layerGroup([b5125,a]),
-					b6520Shp = L.layerGroup([b6520,a]),
-					b5500Shp = L.layerGroup([b5500,a]),
-
-					eShp = L.layerGroup([e]);			
-					//rivers
+				var aShp = L.layerGroup([a]),
+					bShp = L.layerGroup([b]);
+				
 				//background images
 				var OpenStreetMap_Mapnik = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 				maxZoom: 19,
@@ -136,8 +125,8 @@
 							groupName : "Thing",
 							expanded  : true,
 							layers    : { 
-								"Parcel":brgShp,
-								"Point":b4075bShp
+								"Parcel":bShp,
+								"Point":aShp
 							}	
 						 }							 
 				];
