@@ -8,3 +8,14 @@ var points =
 { "type": "Feature", "properties": { "id": 2, "Name": "Crane Baptist Park", "Use": "Park" }, "geometry": { "type": "Point", "coordinates": [ -75.855916680908265, 38.840480651950308 ] } }
 ]
 }
+
+function pointcol(feature) {
+    return {
+        fillColor: getColor(feature.properties.SqMi),
+        weight: 2,
+        opacity: 1,
+        color: "#696969", weight: 1,
+        dashArray: '2',
+        fillOpacity: 0.8
+    };
+}
