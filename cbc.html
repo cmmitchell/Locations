@@ -857,6 +857,13 @@
 					eShp = L.layerGroup([e]);			
 					//rivers
 				//background images
+				var OpenStreetMap_Mapnik = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+				maxZoom: 19,
+				attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+				});
+				var Esri_WorldImagery = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+					attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+				});
 	//this is a seperating line ----------------------------------------------------------------------------------
 				//set map extent, view, and default layer
 				var map = L.map('map', {
@@ -869,127 +876,24 @@
 				//create basemaps variable to call within the control
 				var baseMaps = [
 						{ 
-							groupName : "background",
+							groupName : "Background",
 							expanded : true,
 							layers    : {
-								"Water Background": aShp,
-								"Black Background": a1Shp,
-								"Blank Country B.G.": cdisShp,
-								"Grey 1 B.G.": cdis1Shp,
-								"Grey 2 B.G.": cdis3Shp,
-								"Black B.G.": cdis2Shp,
-								"Green 1 B.G.": cdisg1Shp,
-								"Green 2 B.G.": cdisg2Shp
+								"Streets": OpenStreetMap_Mapnik,
+								"Aerial": Esri_WorldImagery
 							}
-						}, {
-							groupName : "0-5k",
-							layers    : {
-								"Country (pre-3000)":bclasShp,
-								"Country (3128)":b3128Shp,
-								"Country (3600)":b3600Shp,
-								"Country (3650)":b3650Shp,
-								"Country (3700)":b3700Shp,
-								"Country (3750)":b3750Shp,
-								"Country (3800)":b3800Shp,
-								"Country (3830)":b3830Shp,
-								"Country (3905)":b3905Shp,
-								"Country (3915)":b3915Shp,
-								"Country (3940)":b3940Shp,
-								"Country (4000)":b4000Shp,
-								"Country (4020)":b4020Shp,
-								"Country (4030)":b4030Shp,
-								"Country (4045)":b4045Shp,
-								"Country (4065)":b4065Shp,
-								"Country (4075)":b4075Shp,
-								"Country (4080)":b4080Shp,
-								"Country (4110)":b4110Shp,
-								"Country (4500)":b4500Shp,
-								"Country (4700)":b4700Shp,
-								"Country (4875)":b4875Shp,
-								"Country (4940)":b4940Shp
-							}
-						}, {
-							groupName : "5k+",
-							layers    : {
-								"Country (5030)":b5030Shp,
-								"Country (5060)":b5060Shp,
-								"Country (5075)":b5075Shp,
-								"Country (5100)":b5100Shp,
-								"Country (5125)":b5125Shp,
-								"Country (5250)":b5250Shp,
-								"Country (5400)":b5400Shp,
-								"Country (5500)":b5500Shp,
-								"Country (5600)":b5600Shp,
-								"Country (5725)":b5725Shp,
-								"Country (5780)":b5780Shp,
-								"Country (5800)":b5800Shp,
-								"Country (5840)":b5840Shp,
-								"Country (5870)":b5870Shp,
-								"Country (5900)":b5900Shp,
-								"Country (5920)":b5920Shp,
-								"Country (5940)":b5940Shp,
-								"Country (5965)":b5965Shp,
-								"Country (5980)":b5980Shp,
-								"Country (6028)":b6028Shp,
-								"Country (6080)":b6080Shp,
-								"Country (6110)":b6110Shp,
-								"Country (6200)":b6200Shp,
-								"Country (6300)":b6300Shp,
-								"Country (6520)":b6520Shp,
-								"Country (6540)":b6540Shp
-							}
+						}
 						}							
 				];	
 				//create overlays variable to call within the control. Calls layer groups
 				
 				var overlays = [
 						 {
-							groupName : "Land",
+							groupName : "Thing",
 							expanded  : true,
 							layers    : { 
-								"G.M.A. Region":brgShp,
-								"Nations 4075":b4075bShp,
-								"Global War II (6528)":bWW2Shp,
-								"Federation":bFEDShp,
-								"Provinces (Mi²)":b1Shp,
-								"Provinces (Km²)":b2Shp
-							}	
-						 }, {
-							groupName : "Rivers",
-							expanded  : true,
-							layers    : { 
-								"Small River":nShp,
-								"Medium River":cShp,					
-								"River":eShp,
-								"Lake":dShp
-							}	
-						 }, {
-							groupName : "Black Rivers",
-							expanded  : true,
-							layers    : { 
-								"Lake (Black)":d1Shp,	
-								"Large River (Black)":e1Shp,
-								"Medium River (Black)":c1Shp,
-								"Small River (Black)":n1Shp
-							}	
-						 }, {
-							groupName : "Other",
-							expanded  : true,
-							layers    : { 
-								"Mountain Opaque":g2Shp,
-								"Mountain White":gwShp,	
-								"Defensive Line":fShp,
-								"Defensive Line 2":f1Shp,
-								"Roads":hShp,
-								"Roads 2":h2Shp
-							}	
-						 }, {
-							groupName : "Gaticule",
-							layers    : { 
-								
-								"Graticules 30":kShp,
-								"Graticules 5":k5Shp,
-								"Graticules 1":k1Shp
+								"Parcel":brgShp,
+								"Point":b4075bShp
 							}	
 						 }							 
 				];
