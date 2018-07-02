@@ -11,7 +11,7 @@ var points =
 
 function pointcol(feature) {
     return {
-        radius: 2.35,
+        radius: 4.35,
         fillColor: "#2773dd",
         weight: 2,
         opacity: 1,
