@@ -22,10 +22,10 @@ function polycol(feature) {
 function polycol2(feature) {
     return {
         fillColor: "#58c712",
-        weight: 1,
+        weight: 2,
         opacity: 1,
         color: "#d05e00", weight: 5,
-        dashArray: '2',
+        dashArray: '3',
         fillOpacity: 0
     };
 }
