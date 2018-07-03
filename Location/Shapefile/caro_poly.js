@@ -18,3 +18,13 @@ function polycol(feature) {
         fillOpacity: 0.6
     };
 }
+
+function polycol2(feature) {
+    return {
+        fillColor: "#58c712",
+        weight: 2,
+        opacity: 1,
+        color: "#086525", weight: 1,
+        fillOpacity: 0
+    };
+}
