@@ -80,6 +80,13 @@
 					}
 					})
 				
+					b2 = L.geoJson(polys, {
+					style: polycol2,
+					onEachFeature: function (feature, layer){popupOptions = {color: "#5D6D7E", maxWidth: 250};
+					layer.bindPopup("<b>Address:</b> " + feature.properties.ADDRESS,popupOptions);
+					}
+					})
+				
 					c = L.geoJson(roads, {
 					style: roadcol
 					
@@ -97,6 +104,7 @@
 					//=================background=================
 				var aShp = L.layerGroup([a]),
 					bShp = L.layerGroup([b]),
+				    	b2Shp = L.layerGroup([b2]),
 				    	cShp = L.layerGroup([c]);
 				
 				//background images
@@ -145,6 +153,7 @@
 							expanded  : true,
 							layers    : { 
 								"Parcel":bShp,
+								"Parcel Outline":b2Shp,
 								"Point":aShp,
 								"Road":cShp
 							}	
