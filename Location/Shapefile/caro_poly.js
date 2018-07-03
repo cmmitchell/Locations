@@ -25,7 +25,7 @@ function polycol2(feature) {
         weight: 1,
         opacity: 1,
         color: "#d05e00", weight: 5,
-        dashArray: 3,
+        dashArray: '2',
         fillOpacity: 0
     };
 }
