@@ -24,7 +24,6 @@
 		
 		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 		<script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/Leaflet.fullscreen.min.js'></script>
-		<script type="text/javascript" src="https://cmmitchell.github.io/Webmap2/Java/gjson/measure_tool.js"></script>
 		
 
 		
@@ -173,15 +172,7 @@
 				//add control to map
 				var control = L.Control.styledLayerControl(baseMaps, overlays, options);
 				map.addControl(control);
-				//Check this and associated scripts for errors. Displays tool, but not tool icon.  Error is likely in the script.
-				var measureControl = new L.Control.Measure(
-					{
-						position: 'topright',
-						primaryLengthUnit: 'meters',
-						activeColor: '#ABE67E'
-					}
-				);
-				measureControl.addTo(map);
+				
 
 						
 	
