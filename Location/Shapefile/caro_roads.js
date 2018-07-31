@@ -41,6 +41,6 @@ function roadcol(feature) {
 function roadcol2(feature) {
     return {
         opacity: 1,
-        color: "#df0000", weight: 5, dashArray: '5'
+        color: "#df0000", weight: 3, dashArray: '6'
     };
 }
