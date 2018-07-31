@@ -8,7 +8,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>Church Map (CBC)</title>
+		<title>Church Map (CBC)1.0</title>
 
 		<!-- Stylesheets -->
 		<link rel="stylesheet" type="text/css" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" />
@@ -73,14 +73,14 @@
 					}
 					})
 				
-					b = L.geoJson(polys, {
+					b = L.geoJson(poly, {
 					style: polycol,
 					onEachFeature: function (feature, layer){popupOptions = {color: "#5D6D7E", maxWidth: 250};
 					layer.bindPopup("<b>Address:</b> " + feature.properties.ADDRESS,popupOptions);
 					}
 					})
 				
-					b2 = L.geoJson(polys, {
+					b2 = L.geoJson(poly, {
 					style: polycol2,
 					onEachFeature: function (feature, layer){popupOptions = {color: "#5D6D7E", maxWidth: 250};
 					layer.bindPopup("<b>Address:</b> " + feature.properties.ADDRESS,popupOptions);
@@ -92,7 +92,7 @@
 					
 					})
 				
-					d = L.geoJson(ppoly, {
+					d = L.geoJson(opoly, {
 					style: polyp
 					
 					})
