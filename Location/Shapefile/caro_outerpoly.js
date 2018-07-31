@@ -77,7 +77,7 @@ var opoly =
 
 function polyp(feature) {
     return {
-        fillColor: "#58c712",
+        fillColor: "#61d617",
         weight: 2,
         opacity: 1,
         color: "#086525", weight: 1,
