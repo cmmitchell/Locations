@@ -35,12 +35,12 @@ var roads =
 function roadcol(feature) {
     return {
         opacity: 1,
-        color: "#df0000", weight: 5
+        color: "#df0000", weight: 4
     };
 }
 function roadcol2(feature) {
     return {
         opacity: 1,
-        color: "#df0000", weight: 3, dashArray: '6'
+        color: "#df0000", weight: 2, dashArray: '6'
     };
 }
