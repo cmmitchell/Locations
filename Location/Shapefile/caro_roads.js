@@ -34,7 +34,7 @@ var roads =
 
 function roadcol(feature) {
     return {
-        opacity: 1,
+        opacity: .75,
         color: "#df0000", weight: 5
     };
 }
