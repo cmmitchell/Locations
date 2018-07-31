@@ -34,7 +34,13 @@ var roads =
 
 function roadcol(feature) {
     return {
-        opacity: .6,
+        opacity: .75,
         color: "#df0000", weight: 5
+    };
+}
+function roadcol2(feature) {
+    return {
+        opacity: .75,
+        color: "#df0000", weight: 5, dashArray: 1
     };
 }
