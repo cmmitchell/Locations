@@ -103,6 +103,14 @@
 					style: polyp
 					
 					})
+					e = L.geoJson(trail, {
+					style: trailcol
+					
+					})
+					f = L.geoJson(wetland, {
+					style: wetcol
+					
+					})
 
 					
 
@@ -119,6 +127,8 @@
 				    	b2Shp = L.layerGroup([b2]),
 				    	dShp = L.layerGroup([d]),
 				    	c2Shp = L.layerGroup([c2]),
+				    	eShp = L.layerGroup([e]),
+				    	fShp = L.layerGroup([f]),
 				    	cShp = L.layerGroup([c]);
 				
 				//background images
@@ -171,6 +181,8 @@
 								"Parcel Neighbors":dShp,
 								"Point (Interactive)":aShp,
 								"Road":cShp,
+								"Trail":eShp,
+								"Wetland":fShp,
 								"Dash Road":c2Shp
 							}	
 						 }							 
