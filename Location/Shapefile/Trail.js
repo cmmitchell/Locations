@@ -18,7 +18,7 @@ var trail =
 ]
 }
 
-function trailol(feature) {
+function trailcol(feature) {
     return {
         opacity: 1,
         color: "#a77c39", weight: 4
