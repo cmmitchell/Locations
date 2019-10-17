@@ -8,7 +8,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>C Map (CBC)v1.5.1</title>
+		<title>General Map v0.0.1</title>
 
 		<!-- Stylesheets -->
 		<link rel="stylesheet" type="text/css" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" />
@@ -74,45 +74,6 @@
 					layer.bindPopup("<b>Location:</b> " + feature.properties.Name,popupOptions);
 					}
 					})
-				
-					b = L.geoJson(poly, {
-					style: polycol,
-					onEachFeature: function (feature, layer){popupOptions = {color: "#5D6D7E", maxWidth: 250};
-					layer.bindPopup("<b>Address:</b> " + feature.properties.ADDRESS,popupOptions);
-					}
-					})
-				
-					b2 = L.geoJson(poly, {
-					style: polycol2,
-					onEachFeature: function (feature, layer){popupOptions = {color: "#5D6D7E", maxWidth: 250};
-					layer.bindPopup("<b>Address:</b> " + feature.properties.ADDRESS,popupOptions);
-					}
-					})
-				
-					c = L.geoJson(roads, {
-					style: roadcol
-					
-					})
-				
-					c2 = L.geoJson(roads, {
-					style: roadcol2
-					
-					})
-				
-					d = L.geoJson(opoly, {
-					style: polyp
-					
-					})
-					e = L.geoJson(trail, {
-					style: trailcol
-					
-					})
-					f = L.geoJson(wetland, {
-					style: wetcol
-					
-					})
-
-					
 
 					
 	//===============================Layer Groups=======================================
@@ -122,14 +83,7 @@
 				//===================================================
 				
 					//=================background=================
-				var aShp = L.layerGroup([a]),
-					bShp = L.layerGroup([b]),
-				    	b2Shp = L.layerGroup([b2]),
-				    	dShp = L.layerGroup([d]),
-				    	c2Shp = L.layerGroup([c2]),
-				    	eShp = L.layerGroup([e]),
-				    	fShp = L.layerGroup([f]),
-				    	cShp = L.layerGroup([c]);
+				var aShp = L.layerGroup([a]);
 				
 				//background images
 				
@@ -234,14 +188,7 @@
 							groupName : "Layers",
 							expanded  : true,
 							layers    : { 
-								//"Parcel (Interactive)":bShp,
-								"Parcel Outline":b2Shp,
-								//"Parcel Neighbors":dShp,
-								"Point":aShp,
-								"Road":cShp,
-								//"Trail":eShp,
-								//"Wetland":fShp,
-								"Dash Road":c2Shp
+								"Point":aShp
 							}	
 						 }							 
 				];
@@ -273,14 +220,7 @@
 				
 				L.control.scale({maxWidth: 150}).addTo(map);
 				L.control.fullscreen().addTo(map);
-				//var poi1 = L.point(100, -180),
-				//poi2 = L.point(-100, 180)
-				    
-				//L.bounds(poi1, poi2);		
-				
-				//L.map('map', {
-        			
-    				//});
+
 				
 			
 			
