@@ -8,7 +8,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>C Map (CBC)v1.4</title>
+		<title>C Map (CBC)v1.5</title>
 
 		<!-- Stylesheets -->
 		<link rel="stylesheet" type="text/css" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" />
@@ -213,10 +213,16 @@
 							expanded : true,
 							layers    : {
 								
-								"ESRI World Imagery": Esri_WorldImagery,
-								"ESRI World Street Map": Esri_WorldStreetMap,
-								"Open Street Map": OpenStreetMap_Mapnik,
-								"Bing Imagery": bingLayer
+								"ESRI Imagery": Esri_WorldImagery,
+								"ESRI Street Map": Esri_WorldStreetMap,
+								"OSM": OpenStreetMap_Mapnik,
+								"Bing": bingLayer
+								"OSM Hot": OpenStreetMap_HOT
+								"Topo Map": OpenTopoMap
+								"Cycle": Thunderforest_OpenCycleMap
+								"Transport": Thunderforest_Transport
+								"Transport Dark": Thunderforest_TransportDark
+								"Mobile Atlas": Thunderforest_MobileAtlas
 							}
 					
 						}							
