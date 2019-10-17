@@ -1,0 +1,289 @@
+
+<!doctype html>
+
+<!-- Coded by C. M. Mitchell
+		-->
+
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>C Map (CBC)v1.5.1</title>
+
+		<!-- Stylesheets -->
+		<link rel="stylesheet" type="text/css" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" />
+			<script type="text/javascript" src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>
+			<link rel="stylesheet" type="text/css" href="https://cmmitchell.github.io/Webmap2/Stylesheets/ControlLayer.css"/>
+			<script src="https://cmmitchell.github.io/Webmap2/Stylesheets/styledLayerControl.js"></script>
+		<link rel="stylesheet" type="text/css" href="https://cmmitchell.github.io/Webmap2/Stylesheets/measure_tool.css"/>
+		<link rel="stylesheet" type="text/css" href="https://cmmitchell.github.io/Webmap2/Stylesheets/css.css"/>
+		<link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/leaflet.fullscreen.css' rel='stylesheet' />
+			
+	
+
+		<!-- Javascript and other links-->
+		
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+		<script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/Leaflet.fullscreen.min.js'></script>
+		
+
+		
+		<!-- GeoJSON overlays -->
+		<script type="text/javascript" src="https://cmmitchell.github.io/Locations/Location/Shapefile/caro_point.js"></script>
+		<script type="text/javascript" src="https://cmmitchell.github.io/Locations/Location/Shapefile/caro_poly.js"></script>
+		<script type="text/javascript" src="https://cmmitchell.github.io/Locations/Location/Shapefile/caro_roads.js"></script>
+		<script type="text/javascript" src="https://cmmitchell.github.io/Locations/Location/Shapefile/caro_outerpoly.js"></script>
+		<script type="text/javascript" src="https://cmmitchell.github.io/Locations/Location/Shapefile/Wetland.js"></script>
+		<script type="text/javascript" src="https://cmmitchell.github.io/Locations/Location/Shapefile/Trail.js"></script>
+		<script type="text/javascript" src="https://cmmitchell.github.io/Locations/Location/Shapefile/leaflet-bing-layer.js"></script>
+
+		<!-- Broken Stuff -->
+		
+
+
+		
+		
+<!doctype html>
+
+<!-- Coded by C. M. Mitchell
+	 For reasons...
+		-->
+
+		
+	</head>
+		<body>
+	
+		<!-- Fade auomation for text box/legend thing -->
+
+			
+	
+
+						<!-- Logo or somthing -->
+			</div>
+			
+
+			<div id="map"></div>
+	
+			<script>
+			
+			
+			//calling geo JASON and embeded styles from javascript
+				var a = L.geoJson(points, {
+					style: pointcol,
+					onEachFeature: function (feature, layer){popupOptions = {color: "#5D6D7E", maxWidth: 250};
+					layer.bindPopup("<b>Location:</b> " + feature.properties.Name,popupOptions);
+					}
+					})
+				
+					b = L.geoJson(poly, {
+					style: polycol,
+					onEachFeature: function (feature, layer){popupOptions = {color: "#5D6D7E", maxWidth: 250};
+					layer.bindPopup("<b>Address:</b> " + feature.properties.ADDRESS,popupOptions);
+					}
+					})
+				
+					b2 = L.geoJson(poly, {
+					style: polycol2,
+					onEachFeature: function (feature, layer){popupOptions = {color: "#5D6D7E", maxWidth: 250};
+					layer.bindPopup("<b>Address:</b> " + feature.properties.ADDRESS,popupOptions);
+					}
+					})
+				
+					c = L.geoJson(roads, {
+					style: roadcol
+					
+					})
+				
+					c2 = L.geoJson(roads, {
+					style: roadcol2
+					
+					})
+				
+					d = L.geoJson(opoly, {
+					style: polyp
+					
+					})
+					e = L.geoJson(trail, {
+					style: trailcol
+					
+					})
+					f = L.geoJson(wetland, {
+					style: wetcol
+					
+					})
+
+					
+
+					
+	//===============================Layer Groups=======================================
+				
+				//===================================================
+				//assigning variables to layers for control
+				//===================================================
+				
+					//=================background=================
+				var aShp = L.layerGroup([a]),
+					bShp = L.layerGroup([b]),
+				    	b2Shp = L.layerGroup([b2]),
+				    	dShp = L.layerGroup([d]),
+				    	c2Shp = L.layerGroup([c2]),
+				    	eShp = L.layerGroup([e]),
+				    	fShp = L.layerGroup([f]),
+				    	cShp = L.layerGroup([c]);
+				
+				//background images
+				
+				var Esri_WorldImagery = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+					attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+				});
+				
+				var OpenStreetMap_Mapnik = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+				maxZoom: 19,
+				attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+				});
+				
+				var Esri_WorldStreetMap = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
+				attribution: 'Tiles &copy; Esri &mdash; Source: Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRCAN, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom, 2012'
+				});
+				
+				var BING_KEY = 'AnoeM3MMiLwsSc-goBaMU7setahLtvnyjZJrSomUejOJVJU33az0Il4UvyMML5rK'
+				var bingLayer = L.tileLayer.bing(BING_KEY, {
+				maxZoom: 20
+				});
+				
+				var OpenStreetMap_HOT = L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
+				maxZoom: 19,
+				attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Tiles style by <a href="https://www.hotosm.org/" target="_blank">Humanitarian OpenStreetMap Team</a> hosted by <a href="https://openstreetmap.fr/" target="_blank">OpenStreetMap France</a>'
+				});
+				
+				var OpenTopoMap = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
+				maxZoom: 17,
+				attribution: 'Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'
+				});
+				
+				var Thunderforest_OpenCycleMap = L.tileLayer('https://{s}.tile.thunderforest.com/cycle/{z}/{x}/{y}.png?apikey={apikey}', {
+				attribution: '&copy; <a href="http://www.thunderforest.com/">Thunderforest</a>, &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+				apikey: '<your apikey>',
+				maxZoom: 22
+				});
+				
+				var Thunderforest_Transport = L.tileLayer('https://{s}.tile.thunderforest.com/transport/{z}/{x}/{y}.png?apikey={apikey}', {
+				attribution: '&copy; <a href="http://www.thunderforest.com/">Thunderforest</a>, &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+				apikey: '<your apikey>',
+				maxZoom: 22
+				});
+				
+				var Thunderforest_TransportDark = L.tileLayer('https://{s}.tile.thunderforest.com/transport-dark/{z}/{x}/{y}.png?apikey={apikey}', {
+				attribution: '&copy; <a href="http://www.thunderforest.com/">Thunderforest</a>, &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+				apikey: '<your apikey>',
+				maxZoom: 22
+				});
+				
+				var Thunderforest_MobileAtlas = L.tileLayer('https://{s}.tile.thunderforest.com/mobile-atlas/{z}/{x}/{y}.png?apikey={apikey}', {
+				attribution: '&copy; <a href="http://www.thunderforest.com/">Thunderforest</a>, &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+				apikey: '<your apikey>',
+				maxZoom: 22
+				});
+				
+				//var Wikimedia = L.tileLayer('https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}{r}.png', {
+				//attribution: '<a href="https://wikimediafoundation.org/wiki/Maps_Terms_of_Use">Wikimedia</a>',
+				//minZoom: 1,
+				//maxZoom: 19
+				//});
+				
+				
+				
+				
+				
+				
+	//this is a seperating line ----------------------------------------------------------------------------------
+				//set map extent, view, and default layer
+				var map = L.map('map', {
+					layers: [OpenStreetMap_Mapnik],
+					zoomDelta: 0.15,
+					zoomSnap: 0
+					}).setView([38.859504, -75.837826], 13.5);
+	//this is a seperating line ----------------------------------------------------------------------------------
+			
+				//Create Layered Groups
+				//create basemaps variable to call within the control
+				var baseMaps = [
+						{ 
+							groupName : "Background",
+							expanded : true,
+							layers    : {
+								
+								"ESRI Imagery": Esri_WorldImagery,
+								"ESRI Street Map": Esri_WorldStreetMap,
+								"OSM": OpenStreetMap_Mapnik,
+								"Bing": bingLayer,
+								"OSM Hot": OpenStreetMap_HOT,
+								"Topo Map": OpenTopoMap,
+								"Cycle": Thunderforest_OpenCycleMap,
+								"Transport": Thunderforest_Transport,
+								"Transport Dark": Thunderforest_TransportDark,
+								"Mobile Atlas": Thunderforest_MobileAtlas
+							}
+					
+						}							
+				];	
+				//create overlays variable to call within the control. Calls layer groups
+				
+				var overlays = [
+						 {
+							groupName : "Layers",
+							expanded  : true,
+							layers    : { 
+								//"Parcel (Interactive)":bShp,
+								"Parcel Outline":b2Shp,
+								//"Parcel Neighbors":dShp,
+								"Point":aShp,
+								"Road":cShp,
+								//"Trail":eShp,
+								//"Wetland":fShp,
+								"Dash Road":c2Shp
+							}	
+						 }							 
+				];
+				//================================================
+				
+				
+				var options = {
+					container_width 	: "180px",
+					group_maxHeight     : "200px",
+					//container_maxHeight : "350px", 
+					exclusive       	: false,
+					collapsed : true, 
+					position: 'topright'
+				};
+		//this is a seperating line ----------------------------------------------------------------------------------
+				
+				//add control to map
+				var control = L.Control.styledLayerControl(baseMaps, overlays, options);
+				map.addControl(control);
+				
+
+						
+	
+			//this is a seperating line ----------------------------------------------------------------------------------	
+				
+
+				
+				//legendGW.addTo(map);
+				
+				L.control.scale({maxWidth: 150}).addTo(map);
+				L.control.fullscreen().addTo(map);
+				//var poi1 = L.point(100, -180),
+				//poi2 = L.point(-100, 180)
+				    
+				//L.bounds(poi1, poi2);		
+				
+				//L.map('map', {
+        			
+    				//});
+				
+			
+			
+			</script>
+			
+		</body>
