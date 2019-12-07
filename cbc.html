@@ -8,7 +8,7 @@
 	<head>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>C Map (CBC)v1.5.5</title>
+		<title>C Map (CBC)v1.5.55</title>
 
 		<!-- Stylesheets -->
 		<link rel="stylesheet" type="text/css" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" />
@@ -113,6 +113,12 @@
 					style: wetcol
 					
 					})
+				
+					m = L.geoJson(graveloc, {
+					style: GraveCol})
+				
+					n = L.geoJson(gravesharp, {
+					style: GraveCol})
 
 					
 
@@ -131,6 +137,8 @@
 				    	c2Shp = L.layerGroup([c2]),
 				    	eShp = L.layerGroup([e]),
 				    	fShp = L.layerGroup([f]),
+				    	mShp = L.layerGroup([m]),
+				    	nShp = L.layerGroup([n]),
 				    	cShp = L.layerGroup([c]);
 				
 				//background images
@@ -241,8 +249,8 @@
 								//"Parcel Neighbors":dShp,
 								"Point":aShp,
 								"Road":cShp,
-								//"Trail":eShp,
-								//"Wetland":fShp,
+								"Grave M":mShp,
+								"Grave N":nShp,
 								"Dash Road":c2Shp
 							}	
 						 }							 
