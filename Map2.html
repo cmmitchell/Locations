@@ -1,0 +1,243 @@
+
+<!doctype html>
+
+<!-- Coded by C. M. Mitchell
+		-->
+
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>General Map v0.0.312</title>
+
+		<!-- Stylesheets -->
+		<link rel="stylesheet" type="text/css" href="https://unpkg.com/leaflet@1.3.1/dist/leaflet.css" />
+			<script type="text/javascript" src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"></script>
+			<link rel="stylesheet" type="text/css" href="https://cmmitchell.github.io/Webmap2/Stylesheets/ControlLayer.css"/>
+			<script src="https://cmmitchell.github.io/Webmap2/Stylesheets/styledLayerControl.js"></script>
+		<link rel="stylesheet" type="text/css" href="https://cmmitchell.github.io/Webmap2/Stylesheets/measure_tool.css"/>
+		<link rel="stylesheet" type="text/css" href="https://cmmitchell.github.io/Webmap2/Stylesheets/css.css"/>
+		<link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/leaflet.fullscreen.css' rel='stylesheet' />
+			
+	
+
+		<!-- Javascript and other links-->
+		
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+		<script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/Leaflet.fullscreen.min.js'></script>
+		
+
+		
+		<!-- GeoJSON overlays -->
+		<script type="text/javascript" src="https://cmmitchell.github.io/Locations/Location/Shapefile/caro_point.js"></script>
+		<script type="text/javascript" src="https://cmmitchell.github.io/Locations/Location/Shapefile/caro_poly.js"></script>
+		<script type="text/javascript" src="https://cmmitchell.github.io/Locations/Location/Shapefile/caro_roads.js"></script>
+		<script type="text/javascript" src="https://cmmitchell.github.io/Locations/Location/Shapefile/caro_outerpoly.js"></script>
+		<script type="text/javascript" src="https://cmmitchell.github.io/Locations/Location/Shapefile/Wetland.js"></script>
+		<script type="text/javascript" src="https://cmmitchell.github.io/Locations/Location/Shapefile/Trail.js"></script>
+		<script type="text/javascript" src="https://cmmitchell.github.io/Locations/Location/Shapefile/leaflet-bing-layer.js"></script>
+
+		<!-- Broken Stuff -->
+		
+
+
+		
+		
+<!doctype html>
+
+<!-- Coded by C. M. Mitchell
+	 For reasons...
+		-->
+
+		
+	</head>
+		<body>
+	
+		<!-- Fade auomation for text box/legend thing -->
+
+			
+	
+
+						<!-- Logo or somthing -->
+			</div>
+			
+
+			<div id="map"></div>
+	
+			<script>
+			
+			
+			//calling geo JASON and embeded styles from javascript
+				var a = L.geoJson(points, {
+					style: pointcol,
+					onEachFeature: function (feature, layer){popupOptions = {color: "#5D6D7E", maxWidth: 250};
+					layer.bindPopup("<b>Location:</b> " + feature.properties.Name,popupOptions);
+					}
+					})
+
+					
+	//===============================Layer Groups=======================================
+				
+				//===================================================
+				//assigning variables to layers for control
+				//===================================================
+				
+					//=================background=================
+				var aShp = L.layerGroup([a]);
+				
+				//background images
+				
+				var Esri_WorldImagery = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+					attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+				});
+				
+				var OpenStreetMap_Mapnik = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+				maxZoom: 19,
+				attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+				});
+				
+				var Esri_WorldStreetMap = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
+				attribution: 'Tiles &copy; Esri &mdash; Source: Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRCAN, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom, 2012'
+				});
+				
+				var BING_KEY = 'AnoeM3MMiLwsSc-goBaMU7setahLtvnyjZJrSomUejOJVJU33az0Il4UvyMML5rK'
+				var bingLayer = L.tileLayer.bing(BING_KEY, {
+				maxZoom: 20
+				});
+				
+				var OpenStreetMap_HOT = L.tileLayer('https://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', {
+				maxZoom: 19,
+				attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, Tiles style by <a href="https://www.hotosm.org/" target="_blank">Humanitarian OpenStreetMap Team</a> hosted by <a href="https://openstreetmap.fr/" target="_blank">OpenStreetMap France</a>'
+				});
+				
+				var OpenTopoMap = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
+				maxZoom: 17,
+				attribution: 'Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'
+				});
+				
+				var Thunderforest_OpenCycleMap = L.tileLayer('https://tile.thunderforest.com/cycle/{z}/{x}/{y}.png?apikey=cf59c533943842e29b1e02d7fd96726d', {
+				attribution: '&copy; <a href="http://www.thunderforest.com/">Thunderforest</a>, &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+				maxZoom: 22
+				});
+				
+				var Thunderforest_Transport = L.tileLayer('https://tile.thunderforest.com/transport/{z}/{x}/{y}.png?apikey=cf59c533943842e29b1e02d7fd96726d', {
+				attribution: '&copy; <a href="http://www.thunderforest.com/">Thunderforest</a>, &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+
+				maxZoom: 22
+				});
+				
+				var Thunderforest_TransportDark = L.tileLayer('https://tile.thunderforest.com/transport-dark/{z}/{x}/{y}.png?apikey=cf59c533943842e29b1e02d7fd96726d', {
+				attribution: '&copy; <a href="http://www.thunderforest.com/">Thunderforest</a>, &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+				maxZoom: 22
+				});
+				
+				var Thunderforest_MobileAtlas = L.tileLayer('https://tile.thunderforest.com/mobile-atlas/{z}/{x}/{y}.png?apikey=cf59c533943842e29b1e02d7fd96726d', {
+				attribution: '&copy; <a href="http://www.thunderforest.com/">Thunderforest</a>, &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+
+				maxZoom: 22
+				});
+				
+				var CyclOSM = L.tileLayer('https://dev.{s}.tile.openstreetmap.fr/cyclosm/{z}/{x}/{y}.png', {
+				maxZoom: 20,
+				attribution: '<a href="https://github.com/cyclosm/cyclosm-cartocss-style/releases" title="CyclOSM - Open Bicycle render">CyclOSM</a> | Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+				});
+				
+				var Thunderforest_Outdoors = L.tileLayer('https://tile.thunderforest.com/outdoors/{z}/{x}/{y}.png?apikey=cf59c533943842e29b1e02d7fd96726d', {
+				attribution: '&copy; <a href="http://www.thunderforest.com/">Thunderforest</a>, &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+				maxZoom: 22
+				});
+				
+				var Thunderforest_Neighbourhood = L.tileLayer('https://tile.thunderforest.com/neighbourhood/{z}/{x}/{y}.png?apikey=cf59c533943842e29b1e02d7fd96726d', {
+				attribution: '&copy; <a href="http://www.thunderforest.com/">Thunderforest</a>, &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+				maxZoom: 22
+				});
+				
+				//var Wikimedia = L.tileLayer('https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}{r}.png', {
+				//attribution: '<a href="https://wikimediafoundation.org/wiki/Maps_Terms_of_Use">Wikimedia</a>',
+				//minZoom: 1,
+				//maxZoom: 19
+				//});
+				
+				
+				
+				
+				
+	//this is a seperating line ----------------------------------------------------------------------------------
+				//set map extent, view, and default layer
+				var map = L.map('map', {
+					layers: [OpenStreetMap_Mapnik],
+					zoomDelta: 0.15,
+					zoomSnap: 0
+					}).setView([38.859504, -75.837826], 13.5);
+	//this is a seperating line ----------------------------------------------------------------------------------
+			
+				//Create Layered Groups
+				//create basemaps variable to call within the control
+				var baseMaps = [
+						{ 
+							groupName : "Background",
+							expanded : true,
+							layers    : {
+								"OSM": OpenStreetMap_Mapnik,
+								"OSM Hot": OpenStreetMap_HOT,
+								"Topo Map": OpenTopoMap,
+								"Mobile Atlas": Thunderforest_MobileAtlas,
+								"Cycle": Thunderforest_OpenCycleMap,
+								"Transport": Thunderforest_Transport,
+								"Transport Dark": Thunderforest_TransportDark,
+								"Outdoors": Thunderforest_Outdoors,
+								"Neighbourhood": Thunderforest_Neighbourhood,
+								"ESRI Imagery": Esri_WorldImagery,
+								"ESRI Street Map": Esri_WorldStreetMap,
+								"Bing": bingLayer
+								
+							}
+					
+						}							
+				];	
+				//create overlays variable to call within the control. Calls layer groups
+				
+				var overlays = [
+						 {
+							groupName : "Layers",
+							expanded  : true,
+							layers    : { 
+								"Point":aShp
+							}	
+						 }							 
+				];
+				//================================================
+				
+				
+				var options = {
+					container_width 	: "180px",
+					group_maxHeight     : "200px",
+					//container_maxHeight : "350px", 
+					exclusive       	: false,
+					collapsed : true, 
+					position: 'topright'
+				};
+		//this is a seperating line ----------------------------------------------------------------------------------
+				
+				//add control to map
+				var control = L.Control.styledLayerControl(baseMaps, overlays, options);
+				map.addControl(control);
+				
+
+						
+	
+			//this is a seperating line ----------------------------------------------------------------------------------	
+				
+
+				
+				//legendGW.addTo(map);
+				
+				L.control.scale({maxWidth: 150}).addTo(map);
+				L.control.fullscreen().addTo(map);
+
+				
+			
+			
+			</script>
+			
+		</body>
